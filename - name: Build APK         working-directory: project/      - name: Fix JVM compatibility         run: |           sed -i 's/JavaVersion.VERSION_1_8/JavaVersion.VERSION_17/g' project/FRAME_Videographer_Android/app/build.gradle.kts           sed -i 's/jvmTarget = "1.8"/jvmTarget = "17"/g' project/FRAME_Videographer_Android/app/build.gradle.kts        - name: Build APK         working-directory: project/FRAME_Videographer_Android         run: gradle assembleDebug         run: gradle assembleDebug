@@ -1,0 +1,11 @@
+name: Build FRAME APK
+
+on:
+      - name: Fix JVM compatibility
+        run: |
+          sed -i 's/JavaVersion.VERSION_1_8/JavaVersion.VERSION_17/g' project/FRAME_Videographer_Android/app/build.gradle.kts
+          sed -i 's/jvmTarget = "1.8"/jvmTarget = "17"/g' project/FRAME_Videographer_Android/app/build.gradle.kts
+
+      - name: Build APK
+        working-directory: project/FRAME_Videographer_Android
+        run: gradle assembleDebug
